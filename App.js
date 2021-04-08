@@ -6,6 +6,7 @@ const results = {
   local: [],
   setZone: [],
   toLocaleString: [],
+  dateTimeFormat: [],
 };
 
 export async function intlPolyfill() {
@@ -42,6 +43,13 @@ const hermesTest = async () => {
     DateTime.local().setZone('America/New_York');
   }
   results.setZone.push(Date.now() - start);
+
+  start = Date.now();
+  const dtf = new Intl.DateTimeFormat('en');
+  for (let i = 0; i < 100; i++) {
+    dtf.format(new Date());
+  }
+  results.dateTimeFormat.push(Date.now() - start);
 
   start = Date.now();
   for (let i = 0; i < 100; i++) {
