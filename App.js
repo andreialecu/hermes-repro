@@ -1,35 +1,53 @@
 import React, {useState} from 'react';
 import {View, Text} from 'react-native';
-import cloneDeep from 'lodash/fp/cloneDeep';
+import {DateTime} from 'luxon';
 
 const results = {
-  parse: [],
-  clone: [],
-  parseClone: [],
+  local: [],
+  setZone: [],
+  toLocaleString: [],
 };
 
+export async function intlPolyfill() {
+  await import('@formatjs/intl-getcanonicallocales/polyfill');
+  await import('@formatjs/intl-locale/polyfill');
+
+  await import('@formatjs/intl-pluralrules/polyfill');
+  await import('@formatjs/intl-pluralrules/locale-data/en');
+  await import('@formatjs/intl-pluralrules/locale-data/ro');
+
+  await import('@formatjs/intl-numberformat/polyfill');
+  await import('@formatjs/intl-numberformat/locale-data/en');
+  await import('@formatjs/intl-numberformat/locale-data/fr');
+
+  await import('@formatjs/intl-relativetimeformat/polyfill');
+  await import('@formatjs/intl-relativetimeformat/locale-data/en');
+  await import('@formatjs/intl-relativetimeformat/locale-data/ro');
+
+  await import('@formatjs/intl-datetimeformat/polyfill');
+  await import('@formatjs/intl-datetimeformat/locale-data/en');
+  await import('@formatjs/intl-datetimeformat/locale-data/ro');
+  await import('@formatjs/intl-datetimeformat/add-golden-tz');
+}
+
 const hermesTest = async () => {
-  const response = await fetch(
-    'https://gist.githubusercontent.com/karol-bisztyga/856f68c238b3e0f421a95f31e6bc9ed3/raw/2add80d545aea70f7576ac2bcf48915682bfb555/random-json2.json',
-  );
-  let responseJson = await response.json();
-  const text = JSON.stringify(responseJson);
+  let start = Date.now();
+  for (let i = 0; i < 100; i++) {
+    DateTime.local();
+  }
+  results.local.push(Date.now() - start);
 
-  let timeFlag, now;
-  timeFlag = Date.now();
-  const parsed = JSON.parse(text);
-  now = Date.now();
-  results.parse.push(now - timeFlag);
+  start = Date.now();
+  for (let i = 0; i < 100; i++) {
+    DateTime.local().setZone('America/New_York');
+  }
+  results.setZone.push(Date.now() - start);
 
-  timeFlag = Date.now();
-  cloneDeep(parsed);
-  now = Date.now();
-  results.clone.push(now - timeFlag);
-
-  timeFlag = Date.now();
-  cloneDeep(JSON.parse(text));
-  now = Date.now();
-  results.parseClone.push(now - timeFlag);
+  start = Date.now();
+  for (let i = 0; i < 100; i++) {
+    DateTime.local().toLocaleString();
+  }
+  results.toLocaleString.push(Date.now() - start);
 };
 
 const App = () => {
@@ -38,6 +56,7 @@ const App = () => {
   console.log('is it HERMES?', foo.toString());
   if (!result) {
     (async () => {
+      await intlPolyfill();
       for (let i = 0; i < 10; ++i) {
         console.log('test', i);
         await hermesTest();
