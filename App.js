@@ -55,6 +55,7 @@ const hermesTest = async () => {
 const App = () => {
   const [result, setResult] = useState(false);
   const foo = (a, b, c) => a + (b * (c - b)) / a;
+  console.log(`V8 version is ${global._v8runtime().version}`);
   console.log('is it HERMES?', foo.toString());
   if (!result) {
     (async () => {

@@ -5535,6 +5535,13 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-v8@^0.63.4-patch.1:
+  version "0.63.4-patch.1"
+  resolved "https://registry.yarnpkg.com/react-native-v8/-/react-native-v8-0.63.4-patch.1.tgz#1ed13be3bc13c7a3afb2868d29c95c2ea1d2bd3d"
+  integrity sha512-F3zLOCvWilKTnaKCmPXGaHFXeE/EZquaqlf5EPDg75o2GnwqY9rPNpuSbskCRtBj3DgxAYEmJyzzGX12uRa/5Q==
+  dependencies:
+    v8-android "~9.88.0"
+
 react-native@0.63.4:
   version "0.63.4"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.63.4.tgz#2210fdd404c94a5fa6b423c6de86f8e48810ec36"
@@ -6765,6 +6772,16 @@ uuid@^3.3.2:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==
+
+v8-android-jit@^9.88.0:
+  version "9.88.0"
+  resolved "https://registry.yarnpkg.com/v8-android-jit/-/v8-android-jit-9.88.0.tgz#b40f67d7dacf69633900a41f2c58dda39ec44f72"
+  integrity sha512-onr13nTJAFWvJV/mUXX4zN4SQeZ990kf2zDVvA01QVBGRRtdtBLbvvd/D9mKMinw8wd5V03W05nShs9zU5CQXQ==
+
+v8-android@~9.88.0:
+  version "9.88.0"
+  resolved "https://registry.yarnpkg.com/v8-android/-/v8-android-9.88.0.tgz#ecb8e4426d6e68837d70eb71f209626bb0d3c575"
+  integrity sha512-KUnCspxD/7h2Gl7a8OhVd+8UWGPqmCDXwT3PORa32HXk+BK2KBKS+jnd0Eyccv4sSawfQM62iZGghb+8KOuJbw==
 
 v8-compile-cache@^2.0.3:
   version "2.3.0"
