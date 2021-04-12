@@ -10,6 +10,8 @@ const results = {
 };
 
 export async function intlPolyfill() {
+  delete global.Intl;
+
   await import('@formatjs/intl-getcanonicallocales/polyfill');
   await import('@formatjs/intl-locale/polyfill');
 
