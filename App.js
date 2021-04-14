@@ -66,7 +66,7 @@ const App = () => {
   console.log('is it HERMES?', foo.toString());
   if (!result) {
     (async () => {
-      await intlPolyfill();
+      ///await intlPolyfill();
       for (let i = 0; i < 10; ++i) {
         console.log('test', i);
         await hermesTest();
